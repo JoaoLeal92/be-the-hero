@@ -3,6 +3,8 @@ const crypto = require('crypto');
 // Importa as conexões com o banco de dados
 const connection = require('../database/connection');
 
+const generateUniqueId = require('../utils/generateUniqueId')
+
 // Exporta os métodos para serem utilizadosn no arquivo routes
 module.exports = {
     async index(request, response) {
@@ -14,7 +16,7 @@ module.exports = {
     async create(request, response) {
         const { name, email, whatsapp, city, uf } = request.body;
 
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUniqueId();
     
         await connection('ongs').insert({
             id,

@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 // Importa as rotas disponíveis do arquivo routes.js
 const routes = require('./routes');
+const { errors } = require('celebrate')
 
 const app = express();
 
@@ -10,9 +11,10 @@ app.use(cors());
 // Informa ao backend que as requisições serão feitas em formato json
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 
 
-app.listen(3333);
+module.exports = app;
 /*
 url ==> rota/recurso (ex.: localhost:3333/users)
 */
